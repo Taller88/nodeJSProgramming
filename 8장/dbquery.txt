@@ -1,0 +1,20 @@
+Create Database Company;
+
+CRATE Table products(
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(50) NOT NULL,
+    modelnumber VARCHAR(15) NOT NULL,
+    series VARCHAR(30) NOT NULL
+);
+
+INSERT INTO products (name, modelnumber, series) VALUES 
+    ('Eric Clapton Strateocaster', '01082251995', 'ARTIST'),
+    ('Jeff Beck Strateocaster', '01182251995', 'American Deluxe'),
+    ('Eric Clapton Tele', '0151995', 'American Deluxe'),
+    ('Eric Clapton 1', '01082251995', 'ARTIST'),
+    ('Eric Clapton 2', '01082251995', 'Vintage Hot Rod'),
+    ('Eric Clapton 3', '01082251995', 'American Vintage'),
+    ('Eric Clapton 4', '01082251995', 'American Standard'),
+    ('Eric Clapton 5', '01082251995', 'Road Worn'),
+    ('Eric Clapton 6', '01082251995', 'Road Worn');
+
