@@ -9,9 +9,12 @@ var app = express();
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(morgan('short'));
-app.use(express.static(__dirname+"/public"));
+// app.use(express.static(__dirname+"/public"));
 
 app.get("/", function(req, res){
+    console.log("__dirname: "+ __dirname);
+    console.log("__filename: "+ __filename);
+    
     console.log("/ url routing check")
     if(req.cookies.auth){
         console.log("cookie.auth O")
@@ -25,13 +28,15 @@ app.get("/", function(req, res){
 });
 
 app.get("/login", function(req, res){
-    
-    fs.readFile("/login.html", function(err, data){
+    console.log("[get] login ")
+    fs.readFile("./public/login.html", function(err, data){
         if(err){
-            return console.log("File read Error")
+            console.log(err)
+            return console.log("File read Error");
+            
         }
-        res.writeHead(200, {"Content-Type": "text/html"});
-        res.send(data);
+        res.writeHead(200, {'Content-Type': 'text/html'});
+        res.end(data);
     })
 });
 
@@ -50,11 +55,12 @@ app.post("/login", function(req, res){
     }
 });
 
-app.all("*", function(req, res){
-    console.log("404 잘못된 url 요청");
-    res.send('<h1>잘못된 url 요청</h1><br><a href ="/">index 이동</a> ')
-})
+// app.all("*", function(req, res){
+//     console.log("404 잘못된 url 요청");
+//     res.status(404).send('<h1>잘못된 url 요청</h1><br><a href ="/">index 이동</a> ')
+// })
 
 app.listen(52273, function(){
+    console.log("login.js open")
     console.log("Server open port")
 })
