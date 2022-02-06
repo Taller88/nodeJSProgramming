@@ -55,16 +55,56 @@ app.get("/delete/:id", function(req, res){
 
 });
 app.get("/insert", function(req, res){
+    fs.readFile("./public/insert.html", function(err, data){
+        if(err){
+            console.log("fs error : insert.html ");
+            return;
+        }
+        res.send(data);
 
+    })
 });
 app.post("/insert", function(req, res){
+    
+    var name = req.body.name;
+    var modelNumber = req.body.modelNumber;
+    var series = req.body.series;
 
+    client.query("INSERT INTO products(name, modulenumber, series) VALUES(?,?,?)",[
+        name, modelNumber, series
+    ],function(){
+        res.redirect("/");
+    })
+    
 });
 app.get("/edit/:id", function(req, res){
+    var id = req.params.id;
+    fs.readFile("./public/edit.html",'utf8' , function(err, data){
+        if(err){
+            console.log("fs Error : edit.html");
+            return;
+        }
+        client.query("SELECT * FROM products WHERE id = ?",[
+          id  
+        ], function(err, result){//DB 결과
+            res.send(ejs.render(data, {
+                data:result[0]
+            }))
+        })
 
+    })
 });
 app.post("/edit/:id", function(req, res){
-
+    var id = req.body.id;
+    var name = req.body.name;
+    var modelNumber = req.body.modelNumber;
+    var series = req.body.series;
+    console.log(id +","+name+", "+modelNumber+", "+series)
+    client.query("UPDATE products SET name =?, modelNumber = ?, series = ? WHERE id = ?",[
+         name, modelNumber, series, id
+    ], function(){
+        res.redirect("/");
+    })
 });
 
 

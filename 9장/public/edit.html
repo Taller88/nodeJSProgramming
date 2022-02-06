@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>edit pages</title>
+    </head>
+    <body>
+        <h1>Edit Pages</h1>
+        <hr/>
+        <form method="post">
+            <fieldset>
+            <legend>Edit Page</legend>
+            <table>
+                <tr>
+                    <td><label>Id</label></td>
+                    <td><input type="text" name = "id" value="<%=data.id%>" ></td>
+                </tr>
+                <tr>
+                    <td><label>Name</label></td>
+                    <td><input type="text" name = "name" value="<%=data.name%>" ></td>
+                </tr>
+                <tr>
+                    <td><label>Module Number</label></td>
+                    <td><input type="text" name = "modelNumber" value="<%=data.modelnumber%>"></td>
+                </tr>
+                <tr>
+                    <td><label>Series</label></td>
+                    <td><input type="text" name = "series" value="<%=data.series%>" ></td>
+                </tr>
+            </table>
+            </fieldset>
+            <input type="submit">
+        </form>    
+        
+    </body>
+</html>

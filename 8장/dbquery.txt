@@ -1,6 +1,6 @@
 Create Database Company;
 
-CRATE Table products(
+Create Table products(
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(50) NOT NULL,
     modelnumber VARCHAR(15) NOT NULL,
